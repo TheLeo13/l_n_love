@@ -49,7 +49,6 @@
       to {opacity: 1; transform: translateY(0);}
     }
 
-    /* FOTO CENTRALIZADA */
     .foto {
       width: 100%;
       max-width: 360px;
@@ -116,18 +115,30 @@
     @media (min-width:520px){#counter{font-size:72px}}
   </style>
 </head>
+
 <body>
+
+  <!-- 🎵 ÁUDIO EM LOOP -->
+  <audio id="bgMusic" autoplay loop preload="auto">
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="card">
     <div class="initials">N ❤ L</div>
 
-    <!-- AQUI ESTÁ A FOTO -->
     <img src="foto.JPG" class="foto" alt="Te amo">
 
     <div id="counter">0</div>
 
     <div class="sub">
-      Esse é o tempo que se passou desde o dia em que comecei a te amar, meu amor.<br>
-      Esse é o primeiro relógio do universo que nunca vai parar, porque eu vou te amar por toda a eternidade.
+      Feliz aniversário, meu amor. Sinto muito por não poder estar junto com você. 
+      Você é minha Grand Line, meu One Piece, meu sonho que realizei por um tempo. 
+      Desejo muitas alegrias, paz, prosperidade e sucesso na sua vida. 
+      Se estiver lendo, saiba que te amo e quero muito algum dia te reencontrar, 
+      receber novamente uma mensagem carinhosa sua, um abraço e ser chamado de neneco. 
+      Você é muito especial para mim e sempre será.
+      <br><br>
+      Este é o primeiro relógio do universo que nunca vai parar, porque eu vou te amar por toda a eternidade.
       <span class="heart">❤</span>
     </div>
 
@@ -135,7 +146,13 @@
   </div>
 
   <script>
-    const start = new Date(2025, 9, 4, 0, 0, 0, 0); // setembro = mês 8 (0-index)
+    // Garante que o áudio toque após qualquer interação
+    const music = document.getElementById('bgMusic');
+    document.addEventListener('click', () => {
+      music.play().catch(() => {});
+    }, { once: true });
+
+    const start = new Date(2025, 9, 4, 0, 0, 0, 0);
 
     const fmt = new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 });
     const el = document.getElementById('counter');
@@ -160,7 +177,6 @@
 
     requestAnimationFrame(update);
   </script>
+
 </body>
 </html>
-
-
