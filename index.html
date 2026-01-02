@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Leo e Nátaly 💖</title>
 
-  <!-- Evita miniatura ou data no preview do WhatsApp -->
   <meta property="og:title" content="💖">
   <meta property="og:description" content="">
   <meta property="og:image" content="">
@@ -20,7 +19,7 @@
       --accent: #e63946;
     }
 
-    html,body {
+    html, body {
       height: 100%;
       margin: 0;
       background: linear-gradient(160deg, var(--bg1), var(--bg2));
@@ -29,7 +28,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: justify;
     }
 
     .card {
@@ -42,50 +40,12 @@
       width: 90%;
       animation: fadeIn 1.5s ease;
       position: relative;
+      text-align: justify;
     }
 
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(10px);}
       to {opacity: 1; transform: translateY(0);}
-    }
-
-    .foto {
-      width: 100%;
-      max-width: 360px;
-      border-radius: 20px;
-      margin: 20px auto 25px;
-      display: block;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
-
-    #counter {
-      font-feature-settings: 'tnum';
-      font-variant-numeric: tabular-nums;
-      font-size: 56px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--accent);
-      text-shadow: 1px 1px 2px #00000033, -1px -1px 2px #ffffffcc;
-      text-align: center;
-    }
-
-    .sub {
-      margin-top: 18px;
-      font-size: 20px;
-      opacity: .9;
-      line-height: 1.4;
-      text-align: justify;
-    }
-
-    .heart {
-      display: inline-block;
-      animation: pulse 1.4s infinite;
-      color: var(--accent);
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.2); opacity: 0.7; }
     }
 
     .initials {
@@ -101,7 +61,54 @@
       border-radius: 999px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       letter-spacing: 2px;
+    }
+
+    /* FOTO SEM CORTAR */
+    .foto {
+      width: 100%;
+      max-width: 360px;
+      max-height: 420px;
+      object-fit: contain;
+      border-radius: 20px;
+      margin: 20px auto 20px;
+      display: block;
+      background: #fff;
+      padding: 6px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    /* BOTÃO MÚSICA */
+    .music-btn {
+      margin: 10px auto 25px;
+      display: block;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 26px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    #counter {
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--accent);
       text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .sub {
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .extra {
@@ -109,33 +116,43 @@
       font-size: 16px;
       color: #555;
       font-weight: bold;
-      text-align: justify;
     }
 
-    @media (min-width:520px){#counter{font-size:72px}}
+    .heart {
+      color: var(--accent);
+      animation: pulse 1.4s infinite;
+      display: inline-block;
+    }
+
+    @keyframes pulse {
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.2)}
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- 🎵 ÁUDIO EM LOOP -->
-  <audio id="bgMusic" autoplay loop preload="auto">
+  <!-- ÁUDIO -->
+  <audio id="bgMusic" loop preload="auto">
     <source src="musica.mp3" type="audio/mpeg">
   </audio>
 
   <div class="card">
     <div class="initials">N ❤ L</div>
 
-    <img src="foto_ani.JPG" class="foto" alt="Te amo">
+    <img src="foto.JPG" class="foto" alt="Nós dois">
 
-    <div id="counter">0</div>
+    <button class="music-btn" id="musicBtn">▶️ Tocar música</button>
+
+    <div id="counter">0 s</div>
 
     <div class="sub">
-      Feliz aniversário, meu amor. Sinto muito por não poder estar junto com você. 
-      Você é minha Grand Line, meu One Piece, meu sonho que realizei por um tempo. 
-      Desejo muitas alegrias, paz, prosperidade e sucesso na sua vida. 
-      Se estiver lendo, saiba que te amo e quero muito algum dia te reencontrar, 
-      receber novamente uma mensagem carinhosa sua, um abraço e ser chamado de neneco. 
+      Feliz aniversário, meu amor. Sinto muito por não poder estar junto com você.
+      Você é minha Grand Line, meu One Piece, meu sonho que realizei por um tempo.
+      Desejo muitas alegrias, paz, prosperidade e sucesso na sua vida.
+      Se estiver lendo, saiba que te amo e quero muito algum dia te reencontrar,
+      receber novamente uma mensagem carinhosa sua, um abraço e ser chamado de neneco.
       Você é muito especial para mim e sempre será.
       <br><br>
       Este é o primeiro relógio do universo que nunca vai parar, porque eu vou te amar por toda a eternidade.
@@ -146,38 +163,38 @@
   </div>
 
   <script>
-    // Garante que o áudio toque após qualquer interação
+    /* BOTÃO MÚSICA */
     const music = document.getElementById('bgMusic');
-    document.addEventListener('click', () => {
-      music.play().catch(() => {});
-    }, { once: true });
+    const btn = document.getElementById('musicBtn');
+    let playing = false;
 
-    const start = new Date(2025, 9, 4, 0, 0, 0, 0);
+    btn.addEventListener('click', () => {
+      if (!playing) {
+        music.play();
+        btn.textContent = '⏸️ Pausar música';
+        playing = true;
+      } else {
+        music.pause();
+        btn.textContent = '▶️ Tocar música';
+        playing = false;
+      }
+    });
 
-    const fmt = new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 });
-    const el = document.getElementById('counter');
+    /* CONTADOR */
+    const start = new Date(2025, 9, 4, 0, 0, 0);
+    const counter = document.getElementById('counter');
     const extra = document.getElementById('extraText');
 
     function update() {
       const now = Date.now();
-      const diffMs = now - start.getTime();
-      const diffSec = diffMs / 1000;
-      const millions = diffSec / 1_000_000;
-
-      el.textContent = diffSec > 0 ? fmt.format(diffSec.toFixed(0)) + ' s' : '0 s';
-
-      if (diffSec > 0) {
-        extra.textContent =
-          `Já se foram ${fmt.format(millions)} milhões de segundos, e em cada um deles eu te amei.`;
-      } else {
-        extra.textContent = '';
-      }
+      const diff = Math.max(0, (now - start) / 1000);
+      counter.textContent = Math.floor(diff) + ' s';
+      extra.textContent = `Já se foram ${(diff / 1_000_000).toFixed(2)} milhões de segundos, e em cada um deles eu te amei.`;
       requestAnimationFrame(update);
     }
 
-    requestAnimationFrame(update);
+    update();
   </script>
 
 </body>
 </html>
-
